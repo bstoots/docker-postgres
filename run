@@ -5,6 +5,7 @@ repo_root="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 function build_11_buster { # [...docker build flags]: builds bstoots/postgres:11.16-buster image
   docker build -t bstoots/postgres:11.16-buster "$repo_root/11/buster" "$@"
+  docker tag bstoots/postgres:11.16-buster bstoots/postgres:11.16-buster
 }
 
 function remove_11_buster { # [...docker remove flags]: removes bstoots/postgres:11.16-buster image
