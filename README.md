@@ -14,7 +14,7 @@ Builds a new Docker image from the specified Dockerfile.
 
 ```
 # Simple usage
-./run build_11_buster --no-cache
+./run build_11_buster
 
 # You may also pass additional flags which are in turn passed to docker build
 ./run build_11_buster --no-cache
