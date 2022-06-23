@@ -4,7 +4,7 @@ set -e -o pipefail
 repo_root="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 function buildx_11_buster { # [...docker buildx build flags]: builds multi-arch bstoots/postgres:11.16-buster image
-  docker buildx build --platform linux/arm64/v8,linux/amd64 --tag bstoots/postgres:11.16-buster "$repo_root/11/buster" "$@"
+  docker buildx build --platform linux/386,linux/arm64/v8,linux/amd64 --tag bstoots/postgres:11.16-buster "$repo_root/11/buster" "$@"
 }
 
 function build_11_buster { # [...docker buildx build flags]: builds bstoots/postgres:11.16-buster image for only the currect arch

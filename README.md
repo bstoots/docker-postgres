@@ -19,7 +19,7 @@ This repository holds Dockerfiles for building custom postgres container images.
 
 ## Usage
 
-In general this repo is used to build and push multi-arch images to Docker Hub. This is done by first building the images for target architectures, in this case `amd64` and `arm64`, and then pushing them to Docker Hub. After these images are pushed to Docker Hub the images can be pulled just like any other Docker image.
+In general this repo is used to build and push multi-arch images to Docker Hub. This is done by first building the images for target architectures, in this case `linux/386`, `linux/arm64/v8`, and `linux/amd64`, then pushing them to Docker Hub. After these images are pushed to Docker Hub the images can be pulled just like any other Docker image.
 
 ### Run Script
 
@@ -32,7 +32,7 @@ Builds multi-architecture images for PostgreSQL 11.16 on Debian 10 (Buster) usin
 For reference, the built image is: `bstoots/postgres:11.16-buster`
 
 ```
-# Build images for `amd64` and `arm64`.
+# Build images.
 # This does not load them into the local docker instance or push to remote registry.
 ./run buildx_11_buster
 ```
