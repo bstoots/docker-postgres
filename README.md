@@ -29,7 +29,7 @@ The `run` script in the root of the repository can be used to perform various Do
 
 Builds multi-architecture images for PostgreSQL 11.16 on Debian 10 (Buster) using `docker buildx build`. You may pass any number of additional flags for `docker buildx build` to this command.
 
-For reference, the built image is: `bstoots/postgres:11.16-buster`
+For reference, the built image is: `factalinc/postgres:11.16-buster`
 
 ```
 # Build images.
@@ -53,7 +53,7 @@ Builds a single image for PostgreSQL 11.16 on Debian 10 (Buster) using `docker b
 
 #### remove_11_buster
 
-Removes the bstoots/postgres:11.16-buster image from the local environment. 
+Removes the factalinc/postgres:11.16-buster image from the local environment. 
 
 ```
 ./run remove_11_buster
