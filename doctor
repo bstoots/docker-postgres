@@ -4,7 +4,7 @@
 #
 # This script checks if all software requirements are met in a Linux environment
 # in order to use 'docker buildx' to build multi-architecture images.
-# For more information see:
+# For more information see: 
 # https://nexus.eddiesinentropy.net/2020/01/12/Building-Multi-architecture-Docker-Images-With-Buildx/
 
 function error() {
