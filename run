@@ -7,24 +7,24 @@ function buildx_11_buster { # [...docker buildx build flags]: builds multi-arch 
   docker buildx build --platform linux/arm64/v8,linux/amd64 --tag factalinc/postgres:11.16-buster "$repo_root/11/buster" "$@"
 }
 
-function buildx_15_bookworm { # [...docker buildx build flags]: builds multi-arch factalinc/postgres:15.1-bookworm image
-  docker buildx build --platform linux/arm64/v8,linux/amd64 --tag factalinc/postgres:15.1-bookworm "$repo_root/15/bookworm" "$@"
+function buildx_15_bookworm { # [...docker buildx build flags]: builds multi-arch factalinc/postgres:15.2-bookworm image
+  docker buildx build --platform linux/arm64/v8,linux/amd64 --tag factalinc/postgres:15.2-bookworm "$repo_root/15/bookworm" "$@"
 }
 
 function build_11_buster { # [...docker buildx build flags]: builds factalinc/postgres:11.16-buster image for only the currect arch
   docker buildx build --tag factalinc/postgres:11.16-buster "$repo_root/11/buster" "$@"
 }
 
-function build_15_bookworm { # [...docker buildx build flags]: builds factalinc/postgres:15.1-bookworm image for only the currect arch
-  docker buildx build --tag factalinc/postgres:15.1-bookworm "$repo_root/15/bookworm" "$@"
+function build_15_bookworm { # [...docker buildx build flags]: builds factalinc/postgres:15.2-bookworm image for only the currect arch
+  docker buildx build --tag factalinc/postgres:15.2-bookworm "$repo_root/15/bookworm" "$@"
 }
 
 function remove_11_buster { # [...docker image rm flags]: removes factalinc/postgres:11.16-buster image
   docker image rm --force factalinc/postgres:11.16-buster "$@"
 }
 
-function remove_15_bookworm { # [...docker image rm flags]: removes factalinc/postgres:15.1-bookworm image
-  docker image rm --force factalinc/postgres:15.1-bookworm "$@"
+function remove_15_bookworm { # [...docker image rm flags]: removes factalinc/postgres:15.2-bookworm image
+  docker image rm --force factalinc/postgres:15.2-bookworm "$@"
 }
 
 if [[ $# -eq 0 || "$1" == "help" ]]; then
