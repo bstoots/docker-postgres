@@ -19,11 +19,13 @@ This repository holds Dockerfiles for building custom postgres container images.
 
 ## Usage
 
-In general this repo is used to build and push multi-arch images to Docker Hub. This is done by first building the images for target architectures, in this case `linux/386`, `linux/arm64/v8`, and `linux/amd64`, then pushing them to Docker Hub. After these images are pushed to Docker Hub the images can be pulled just like any other Docker image.
+In general this repo is used to build and push multi-arch images to Docker Hub. This is done by first building the images for target architectures, in this case `linux/arm64/v8` and `linux/amd64`, then pushing them to Docker Hub. After these images are pushed to Docker Hub the images can be pulled just like any other Docker image.
 
 ### Run Script
 
 The `run` script in the root of the repository can be used to perform various Docker image management tasks. For a list of available commands run: `./run`.
+
+We are currently using the `factalinc/postgres:11.16-buster` image by default in local environments. `factalinc/postgres:15.1-bookworm` is considered experimental at this time. Using the `*_15_bookworm` verison of the commands below works the same way as noted but builds PostgreSQL 15 container images instead.
 
 #### buildx_11_buster
 
