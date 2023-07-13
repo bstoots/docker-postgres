@@ -3,28 +3,66 @@ set -e -o pipefail
 
 repo_root="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
-function buildx_11_buster { # [...docker buildx build flags]: builds multi-arch factalinc/postgres:11.16-buster image
-  docker buildx build --platform linux/386,linux/arm64/v8,linux/amd64 --tag factalinc/postgres:11.16-buster "$repo_root/11/buster" "$@"
+function buildx_11_buster_postgres { # [...docker buildx build flags]: builds multi-arch factalinc/postgres:11.16-buster image
+  docker buildx build --platform linux/386,linux/arm64/v8,linux/amd64 --tag factalinc/postgres:11.16-buster "$repo_root/11/buster/postgres" "$@"
 }
 
-function buildx_15_bookworm { # [...docker buildx build flags]: builds multi-arch factalinc/postgres:15.2-bookworm image
-  docker buildx build --platform linux/386,linux/arm64/v8,linux/amd64 --tag factalinc/postgres:15.2-bookworm "$repo_root/15/bookworm" "$@"
+function buildx_11_buster_postgis { # [...docker buildx build flags]: builds multi-arch factalinc/postgis:2.5-11.16-buster image
+  docker buildx build --platform linux/386,linux/arm64/v8,linux/amd64 --tag factalinc/postgis:2.5-11.16-buster "$repo_root/11/buster/postgis" "$@"
 }
 
-function build_11_buster { # [...docker buildx build flags]: builds factalinc/postgres:11.16-buster image for only the currect arch
-  docker buildx build --tag factalinc/postgres:11.16-buster "$repo_root/11/buster" "$@"
+function buildx_15_bookworm_postgres { # [...docker buildx build flags]: builds multi-arch factalinc/postgres:15.3-bookworm image
+  docker buildx build --platform linux/386,linux/arm64/v8,linux/amd64 --tag factalinc/postgres:15.3-bookworm "$repo_root/15/bookworm/postgres" "$@"
 }
 
-function build_15_bookworm { # [...docker buildx build flags]: builds factalinc/postgres:15.2-bookworm image for only the currect arch
-  docker buildx build --tag factalinc/postgres:15.2-bookworm "$repo_root/15/bookworm" "$@"
+function buildx_15_bookworm_postgis { # [...docker buildx build flags]: builds multi-arch factalinc/postgis:3-15.3-bookworm image
+  docker buildx build --platform linux/386,linux/arm64/v8,linux/amd64 --tag factalinc/postgis:3-15.3-bookworm "$repo_root/15/bookworm/postgis" "$@"
 }
 
-function remove_11_buster { # [...docker image rm flags]: removes factalinc/postgres:11.16-buster image
+function build_11_buster_postgres { # [...docker buildx build flags]: builds factalinc/postgres:11.16-buster image for only the currect arch
+  docker buildx build --tag factalinc/postgres:11.16-buster "$repo_root/11/buster/postgres" "$@"
+}
+
+function build_11_buster_postgis { # [...docker buildx build flags]: builds factalinc/postgis:2.5-11.16-buster image for only the currect arch
+  docker buildx build --tag factalinc/postgis:2.5-11.16-buster "$repo_root/11/buster/postgis" "$@"
+}
+
+function build_15_bookworm_postgres { # [...docker buildx build flags]: builds factalinc/postgres:15.3-bookworm image for only the currect arch
+  docker buildx build --tag factalinc/postgres:15.3-bookworm "$repo_root/15/bookworm/postgres" "$@"
+}
+
+function build_15_bookworm_postgis { # [...docker buildx build flags]: builds factalinc/postgis:3-15.3-bookworm image for only the currect arch
+  docker buildx build --tag factalinc/postgis:3-15.3-bookworm "$repo_root/15/bookworm/postgis" "$@"
+}
+
+function remove_11_buster_postgres { # [...docker image rm flags]: removes factalinc/postgres:11.16-buster image
   docker image rm --force factalinc/postgres:11.16-buster "$@"
 }
 
-function remove_15_bookworm { # [...docker image rm flags]: removes factalinc/postgres:15.2-bookworm image
-  docker image rm --force factalinc/postgres:15.2-bookworm "$@"
+function remove_11_buster_postgis { # [...docker image rm flags]: removes factalinc/postgis:2.5-11.16-buster image
+  docker image rm --force factalinc/postgis:2.5-11.16-buster "$@"
+}
+
+function remove_15_bookworm_postgres { # [...docker image rm flags]: removes factalinc/postgres:15.3-bookworm image
+  docker image rm --force factalinc/postgres:15.3-bookworm "$@"
+}
+
+function remove_15_bookworm_postgis { # [...docker image rm flags]: removes factalinc/postgis:3-15.3-bookworm image
+  docker image rm --force factalinc/postgis:3-15.3-bookworm "$@"
+}
+
+function buildx_all { # [...docker buildx build flags]: builds multi-arch postgres and postgis images
+  buildx_11_buster_postgres "$@"
+  buildx_11_buster_postgis "$@"
+  buildx_15_bookworm_postgres "$@"
+  buildx_15_bookworm_postgis "$@"
+}
+
+function remove_all { # [...docker image rm flags]: removes factalinc/postgis:3-15.3-bookworm image
+  remove_11_buster_postgres "$@"
+  remove_11_buster_postgis "$@"
+  remove_15_bookworm_postgres "$@"
+  remove_15_bookworm_postgis "$@"
 }
 
 if [[ $# -eq 0 || "$1" == "help" ]]; then

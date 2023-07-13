@@ -1,5 +1,5 @@
 #
-# Custom PostgreSQL 15.2 image for Debian Bookworm (12)
+# Custom PostgreSQL 15.3 image for Debian Bookworm (12)
 # Based on https://github.com/docker-library/postgres/blob/74e51d102aede317665f2b4a9b89362135402fe7/11/stretch/Dockerfile
 #
 
@@ -86,7 +86,7 @@ RUN set -ex; \
 ENV PG_MAJOR 15
 ENV PATH $PATH:/usr/lib/postgresql/$PG_MAJOR/bin
 
-ENV PG_VERSION 15.2-2
+ENV PG_VERSION 15.3-0+deb12u1
 
 RUN set -ex; \
 	\
