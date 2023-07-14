@@ -63,7 +63,7 @@ For example if you wanted to build and load the PostgreSQL 15 / PostGIS 3 image 
 ./run build_15_bookworm_postgis --load
 ```
 
-Assuming the build and load succeeds you can then start a containing using this image. For example:
+Assuming the build and load succeeds you can then start a container using this image. For example:
 ```
 # Run a container named test-postgres. -d to daemonize and detach from the console.
 docker run --name test-postgres -e POSTGRES_PASSWORD=mysecretpassword -d factalinc/postgis:3-15.3-bookworm
